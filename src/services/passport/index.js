@@ -11,11 +11,9 @@ export const password = () => (req, res, next) =>
     if (err && err.param) {
       return res.status(400).json(err)
     } else if (err || !user) {
-      console.log('herehrhe', user)
       return res.status(401).end()
     }
     req.logIn(user, { session: false }, (err) => {
-      console.log('herher', err)
       if (err) return res.status(401).end()
       next()
     })
