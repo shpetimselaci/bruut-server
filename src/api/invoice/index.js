@@ -7,7 +7,7 @@ import { schema } from './model'
 export Invoice, { schema } from './model'
 
 const router = new Router()
-const { products, total, paid } = schema.tree
+const { products, total, paid, to } = schema.tree
 
 /**
  * @api {post} /invoices Create invoice
@@ -25,7 +25,7 @@ const { products, total, paid } = schema.tree
  */
 router.post('/',
   token({ required: true, roles: ['admin'] }),
-  body({ products, total, paid }),
+  body({ products, total, paid, to }),
   create)
 
 /**
@@ -76,7 +76,7 @@ router.get('/:id',
  */
 router.put('/:id',
   token({ required: true, roles: ['admin'] }),
-  body({ products, total, paid }),
+  body({ products, total, paid, to }),
   update)
 
 /**

@@ -7,28 +7,31 @@ const productOnThis = extendSchema(product, {
     type: Number,
     required: true
   },
+  TVSH: {
+    type: Number,
+    required: true
+  },
   end_price: {
     type: Number,
     required: true
   }
 })
-const invoiceSchema = new Schema({
-  to: {
-    type: {
-      name: {
-        type: String,
-        required: true
-      },
-      phoneNumber: {
-        type: String
-      },
-      address: {
-        type: String,
-        required: true
-      }
-    },
+const to = extendSchema({}, {
+  name: {
+    type: String,
     required: true
   },
+  phoneNumber: {
+    type: String
+  },
+  address: {
+    type: String,
+    required: true
+  }
+})
+
+const invoiceSchema = new Schema({
+  to,
   products: [productOnThis],
   total: {
     type: String,
