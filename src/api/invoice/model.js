@@ -14,7 +14,19 @@ const productOnThis = extendSchema(product, {
 })
 const invoiceSchema = new Schema({
   to: {
-    type: String,
+    type: {
+      name: {
+        type: String,
+        required: true
+      },
+      phoneNumber: {
+        type: String
+      },
+      address: {
+        type: String,
+        required: true
+      }
+    },
     required: true
   },
   products: [productOnThis],
@@ -23,7 +35,7 @@ const invoiceSchema = new Schema({
     required: true
   },
   paid: {
-    type: String,
+    type: Boolean,
     required: true
   }
 }, {
@@ -39,6 +51,7 @@ invoiceSchema.methods = {
     const view = {
       // simple view
       id: this.id,
+      to: this.to,
       products: this.products,
       total: this.total,
       paid: this.paid,

@@ -2,13 +2,20 @@ import mongoose, { Schema } from 'mongoose'
 
 const productSchema = new Schema({
   name: {
-    type: String
+    type: String,
+    required: true
   },
   measurement_type: {
-    type: String
+    type: String,
+    required: true
   },
   price: {
-    type: String
+    type: String,
+    required: true
+  },
+  barCode: {
+    type: String,
+    required: true
   }
 }, {
   timestamps: true,
@@ -26,6 +33,7 @@ productSchema.methods = {
       name: this.name,
       measurement_type: this.measurement_type,
       price: this.price,
+      barCode: this.barCode,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt
     }
